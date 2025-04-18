@@ -10,12 +10,15 @@ BASE_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 RAW_DATA_DIR = BASE_DATA_DIR / "raw_data"
 DATASETS_DIR = BASE_DATA_DIR / "datasets"
 
-for directory in [RAW_DATA_DIR, DATASETS_DIR]:
-  try:
-    directory.mkdir(parents=True, exist_ok=True) 
-    os.chmod(directory, 0o775)
-  except:
-    print(f"No se pudieron cambiar permisos de: {directory}")
+def ensure_directories_exist():
+  for directory in [BASE_DATA_DIR, RAW_DATA_DIR, DATASETS_DIR]:
+    try:
+      directory.mkdir(parents=True, exist_ok=True) 
+      os.chmod(directory, 0o775)
+    except PermissionError:
+      print(f"No se pudieron cambiar permisos de: {directory}")
+
+ensure_directories_exist()
 
 async def get_recent_matches(player_id: int):
   async with httpx.AsyncClient() as client:
