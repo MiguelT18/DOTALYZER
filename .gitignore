@@ -1,3 +1,4 @@
+# Ignorar archivos de Python
 /api/__pycache__/
 /api/**/*.pyc
 /api/**/*.pyo
@@ -18,7 +19,24 @@
 /api/.idea/
 /api/.vscode/
 
+# Ignorar archivos de Poetry
 /api/poetry.lock
 /api/*.egg-info/
 /api/build/
 /api/dist/
+
+# Ignorar configuraciones de VSCode
+.vscode/
+
+# Ignorar archivos dentro de data/, excepto las carpetas y archivos específicos
+/api/src/data/**/*.json
+/api/src/data/**/*.csv
+
+# Asegurar que las carpetas de raw_data y datasets NO se ignoren
+!/api/src/data/raw_data/
+/api/src/data/raw_data/*.json
+!/api/src/data/datasets/
+/api/src/data/datasets/*.json
+
+# Ignorar otros archivos temporales, si existen
+*.log

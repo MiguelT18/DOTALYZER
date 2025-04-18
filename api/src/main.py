@@ -1,7 +1,3 @@
-from fastapi import FastAPI
+from config.server import create_app
 
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return { "message": "Pan con soda" }
+app = create_app()  

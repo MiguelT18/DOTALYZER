@@ -5,9 +5,11 @@ services:
       dockerfile: Dockerfile
       args:
         POETRY_ENV: dev
+        USER_ID: ${UID}
+        GROUP_ID: ${GID}
     container_name: fastapi-app
     image: fastapi-app:latest
-    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    command: sh -c "umask 002 && uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
     volumes:
       - ./api/src:/app/src
       - ./api:/app
@@ -15,3 +17,4 @@ services:
       - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app/src
