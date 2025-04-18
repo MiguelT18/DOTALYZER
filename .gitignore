@@ -36,7 +36,9 @@
 !/api/src/data/raw_data/
 /api/src/data/raw_data/*.json
 !/api/src/data/datasets/
-/api/src/data/datasets/*.json
+/api/src/data/datasets/*.csv
 
 # Ignorar otros archivos temporales, si existen
 *.log
+/api/*.csv
+/api/*.json
